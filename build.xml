@@ -1,0 +1,39 @@
+<project name="oSQL" basedir="." default="main">
+    <property name="src.dir"     value="src"/>
+    <property name="build.dir"   value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="license.dir" value="${classes.dir}/license"/>
+    <property name="doc.dir" value="doc"/>
+    <property name="jar.dir"     value="${build.dir}/jar"/>
+    <property name="author" value="Somes Kumar K"/>
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+    <target name="compile">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}"/>
+        <copy file="LICENSE" todir="${license.dir}"/>
+    </target>
+    <target name="jar" depends="compile">
+        <mkdir dir="${jar.dir}"/>
+        <copy file="LICENSE" todir="${jar.dir}"/>
+        <mkdir dir="${jar.dir}/doc"/>
+        <copy todir="${jar.dir}/doc">
+            <fileset dir="${doc.dir}"/>
+        </copy>
+        <mkdir dir="${jar.dir}/doc"/>
+        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Built-By" value="${author}"/>
+            </manifest>
+        </jar>
+        <zip destfile="${jar.dir}/${ant.project.name}.zip"
+            basedir="${jar.dir}/"
+            update="true"/>
+    </target>
+    <target name="run" depends="jar">
+        <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
+    </target>
+    <target name="clean-build" depends="clean,jar"/>
+    <target name="main" depends="clean,run"/>
+</project>
