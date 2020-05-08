@@ -1,6 +1,7 @@
 package com.orm.join;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Join{
 	private String base_table="";
@@ -11,9 +12,13 @@ public class Join{
 		this.base_table=tablename;
 		tables.add(tablename);
 	}
-	public void add(Joins obj) throws Exception{
+	public void add(Joins obj) throws Exception {
 		build_join(obj);
 	}
+	public void remove(String tableName) throws IllegalAccessException {
+		deleteJoin(tableName);
+	}
+	//---- Private Methods ---
 	private boolean check_table(Joins join) {
 		if(!this.tables.contains(join.getBaseTable())) {
 			throw new IllegalArgumentException("Base table must be contained in object");
@@ -29,6 +34,19 @@ public class Join{
 			joins.add(obj.getJoinString());	
 		}
 		
+	}
+	private void deleteJoin(String table) throws IllegalAccessException {
+		String crit = table+"." ;
+		String join = null;
+		for(String joinStr : this.joins){
+			if(joinStr.contains(crit)) {
+				if (join != null) {
+					throw new IllegalAccessException("This table is a base table, remove depedency to remove join");
+				}
+				join = joinStr;
+			}
+		}
+		this.joins.remove(join);
 	}
 	public String name() {
 		return base_table;

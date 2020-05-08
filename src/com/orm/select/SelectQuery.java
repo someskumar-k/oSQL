@@ -49,8 +49,4 @@ public class SelectQuery {
 	public String toString() {
 		return getQueryString();
 	}
-	public String excecute() {
-		return SqlConnector.getConnection().excecute_query(this.getQueryString());
-	}
-	
 }
