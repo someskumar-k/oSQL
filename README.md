@@ -13,7 +13,7 @@ and a extended support for all relational databases.
 
 These are key principles that I aim to develop in this package. If you are intrested you are welcomed to contribute
 ### Releases
-  [v0.0.2-beta](https://github.com/Someskumarasamy/oSQL/releases/download/v0.0.2-beta/oSQL.zip)
+  [v0.0.2-beta](https://github.com/Someskumarasamy/oSQL/releases/download/v0.0.2-beta/oSQL.zip), 
   [v0.0.1-beta](https://github.com/Someskumarasamy/oSQL/releases/download/v0.0.1-beta/oSQL.zip)
 ## UpComming Features
   1. Where Condition
