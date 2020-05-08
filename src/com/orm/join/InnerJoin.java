@@ -17,7 +17,7 @@ public class InnerJoin extends Joins{
 	protected String getNewTable() {
 		return hid.getNewTable();
 	}
-	class Hidden{
+	private  class Hidden{
 		private static final String type=" INNER JOIN";
 		 String newTable="";
 		 String basecolumn="";
